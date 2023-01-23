@@ -10,9 +10,9 @@
 #include <PubSubClient.h>
 
 //PINES de ESP8266
-#define boton1 04
-#define boton2 05
-#define interruptor 15
+#define boton1 16
+#define boton2 5
+#define interruptor 4
 
 // funcion Deep Sleep
 #define SLEEP_TIME 1800
@@ -46,10 +46,10 @@ int lectura_de_interruptor;
 char mensaje;
 
 //constantes de RED
-const char* ssid = "Queso54";
-const char* password = "quegalle123.z";
+const char* ssid = "*****************";
+const char* password = "**************";
 //constante de servidor
-const char*mqtt_server = "192.168.1.79";
+const char*mqtt_server = "mqtt.eclipseprojects.io";
 
 //tokens para CHATBOTS
 #define BOTtoken "5513596431:AAGQm7NEc0qF976_0z2-DTrUxPZuBH1AMp4"  // your Bot Token (Get from Botfather)
@@ -145,32 +145,32 @@ reconnect();
 
      if(diferenciaTiempo==20){//si han pasado 20 min
               
-             mqttClient.subscribe("maquinaCortadora");
-             mqttClient.publish("maquinaCortadora", "Alarma nivel 1");
+             mqttClient.subscribe("sensor/temperatura");
+             mqttClient.publish("sensor/temperatura", "Alarma nivel 1");
              Serial.println(" han pasado 20min de inactividad "); 
              bot.sendMessage(CHAT_ID, "OptiCut sin operación, Alarma nivel 1, favor de atender");//mandar mensaje a chatbot 1
      }
      if(diferenciaTiempo==40){ //si han pasado 40 min
 
             
-              mqttClient.subscribe("maquinaCortadora");
-              mqttClient.publish("maquinaCortadora", "Alarma nivel 2");
+              mqttClient.subscribe("sensor/temperatura");
+              mqttClient.publish("sensor/temperatura", "Alarma nivel 2");
               Serial.println("2 han pasado 40min de inactividad ");
               bot1.sendMessage(CHAT_ID1, "OptiCut sin operación, Alarma nivel 2, favor de atender");//mandar mensaje a chatbot 2
      }
      if(diferenciaTiempo==3600){// si ha pasado 1 hora
 
       
-            mqttClient.subscribe("maquinaCortadora");
-            mqttClient.publish("maquinaCortadora", "Alarma nivel 3");
+            mqttClient.subscribe("sensor/temperatura");
+            mqttClient.publish("sensor/temperatura", "Alarma nivel 3");
             Serial.println("3 han pasado 60min de inactividad ");
             bot2.sendMessage(CHAT_ID2, "OptiCut sin operación, Alarma nivel 3, favor de atender");//mandar mensaje a chatbot 3
      }
      if(diferenciaTiempo==4800){//si ha pasado 1hr con 20min
 
       
-            mqttClient.subscribe("maquinaCortadora");
-            mqttClient.publish("maquinaCortadora", "Alarma nivel 4");
+            mqttClient.subscribe("sensor/temperatura");
+            mqttClient.publish("sensor/temperatura", "Alarma nivel 4");
             Serial.println("4 han pasado 1hr con 20min de inactividad ");
             bot3.sendMessage(CHAT_ID3, "OptiCut sin operación, Alarma nivel 4, URGENTE");//mandar mensaje a chatbot 4
      }
@@ -190,8 +190,8 @@ reconnect();
 
         mqttClient.loop();
 
-        mqttClient.subscribe("maquinaCortadora");
-        mqttClient.publish("maquinaCortadora", "tabla contada");
+        mqttClient.subscribe("sensor/temperatura");
+        mqttClient.publish("sensor/temperatura", "tabla contada");
         Serial.println("tabla contada");
 
         //tiempo de espera  entre tabla y tabla
@@ -202,8 +202,8 @@ reconnect();
     if(diferenciaTiempo2==20){
 
           
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 1");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 1");
            delay (1000);
            Serial.println("Han pasado 20 min con unicamente el sensor 2 activo");
            bot.sendMessage(CHAT_ID, "han pasado 20 min con el sensor dos activo");//mandar mensaje a chatbot 1
@@ -212,24 +212,24 @@ reconnect();
     if(diferenciaTiempo2==40){
 
       
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 2");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 2");
            delay (1000);
            Serial.println("Han pasado 40 min con unicamente el sensor 1 activo");
            bot1.sendMessage(CHAT_ID1, "han pasado 40 min con unicamente el sensor2 activo");//mandar mensaje a chatbot 2
     }
     if(diferenciaTiempo2==3600){
            
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 3");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 3");
         
            Serial.println("Han pasado 60 segundos con unicamente el sensor 1 activo");
            bot2.sendMessage(CHAT_ID2, "han pasado 60 min con unicamente el sensor2 activo");//mandar mensaje a chatbot 2
     }
     if(diferenciaTiempo==4800){//si ha pasado 1hr con 20min
 
-            mqttClient.subscribe("maquinaCortadora");
-            mqttClient.publish("maquinaCortadora", "Alarma nivel 4");
+            mqttClient.subscribe("sensor/temperatura");
+            mqttClient.publish("sensor/temperatura", "Alarma nivel 4");
             Serial.println("4 han pasado 1hr con 20min de inactividad ");
             bot3.sendMessage(CHAT_ID3, "han pasado 1hr con 20 min con unicamente el sensor2 activo");//mandar mensaje a chatbot 4
     }
@@ -251,8 +251,8 @@ reconnect();
     if(diferenciaTiempo3==20){
 
             
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 1");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 1");
            Serial.println("Primera notificacion 20 min con ambos sensores inactivos");
            bot.sendMessage(CHAT_ID, "OptiCut sin operación, Alarma nivel 1, favor de atender");//mandar mensaje a chatbot 1
            //modificacion 4 de junio 2022
@@ -263,23 +263,23 @@ reconnect();
     if(diferenciaTiempo3==40){
 
            
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 2");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 2");
            Serial.println("Segunda notificacion, demasiado tiempo con los sensores inactivos");
            bot1.sendMessage(CHAT_ID1, "OptiCut sin operación, Alarma nivel 2, favor de atender");//mandar mensaje a chatbot 2
 
     }
     if(diferenciaTiempo3==3600){
          
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 3");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 3");
            Serial.println("Tercera notificacion, demasiado tiempo con los sensores inactivos");
            bot2.sendMessage(CHAT_ID2, "OptiCut sin operación, Alarma nivel 3, favor de atender");//mandar mensaje a chatbot 3
     }
     if(diferenciaTiempo3==4800){
           
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 4");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 4");
            Serial.println("Cuarta notificacion, demasiado tiempo con los sensores inactivos");
            bot3.sendMessage(CHAT_ID3, "OptiCut sin operación, Alarma nivel 4, URGENTE");//mandar mensaje a chatbot 4
     }
@@ -296,32 +296,32 @@ reconnect();
 
     if(diferenciaTiempo4==20){
             
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 1");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 1");
            Serial.println("Primera notificacion, ambos sensores han pasado mucho tiempo activos");
            bot.sendMessage(CHAT_ID, "OptiCut sin operación, Alarma nivel 1, favor de atender");//mandar mensaje a chatbot 1
 
     }
     if(diferenciaTiempo==40){
       
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 2");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 2");
            Serial.println("Segunda notificación, ambos sensores han pasado mucho tiempo activos");
            bot1.sendMessage(CHAT_ID1, "OptiCut sin operación, Alarma nivel 2, favor de atender");//mandar mensaje a chatbot 2
 
     }
     if(diferenciaTiempo==3600){
           
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarama nivel 3");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarama nivel 3");
            Serial.println("Tercera Notificacion, ambos sensores han pasado 3 segundos activos");
            bot2.sendMessage(CHAT_ID2, "OptiCut sin operación, Alarma nivel 3, favor de atender");//mandar mensaje a chatbot 3
     }
     if(diferenciaTiempo==4800){
 
       
-           mqttClient.subscribe("maquinaCortadora");
-           mqttClient.publish("maquinaCortadora", "Alarma nivel 4");
+           mqttClient.subscribe("sensor/temperatura");
+           mqttClient.publish("sensor/temperatura", "Alarma nivel 4");
            Serial.println("Cuarta Notificacion, ambos sensores han pasado mucho tiempo activos");
            bot3.sendMessage(CHAT_ID3, "OptiCut sin operación, Alarma nivel 4, URGENTE");//mandar mensaje a chatbot 2
     }
@@ -332,8 +332,8 @@ reconnect();
 
     if(lectura_de_interruptor==1){
           
-          mqttClient.subscribe("maquinaCortadora");
-          mqttClient.publish("maquinaCortadora", "Descanso/Hora de comida");
+          mqttClient.subscribe("sensor/temperatura");
+          mqttClient.publish("sensor/temperatura", "Descanso/Hora de comida");
           Serial.println("durmiendo");
           bot.sendMessage(CHAT_ID,   "Descanso/Hora de comida");//mandar mensaje a chatbot 1
           bot1.sendMessage(CHAT_ID1, "Descanso/Hora de comida");//mandar mensaje a chatbot 2
@@ -368,12 +368,12 @@ reconnect();
             while (!mqttClient.connected()){
             if (mqttClient.connect("testgs")){
       
-            mqttClient.subscribe("maquinaCortadora");
+            mqttClient.subscribe("sensor/temperatura");
               }else{
             Serial.print("fallo, reconectando ...");
             Serial.print(mqttClient.state());
-            mqttClient.subscribe("maquinaCortadora");
-            mqttClient.publish ("maquinaCortadora", "falló dispositivo y se reconecto");
+            mqttClient.subscribe("sensor/temperatura");
+            mqttClient.publish ("sensor/temperatura", "falló dispositivo y se reconecto");
             Serial.println ("volviendo a conectar ");
             delay (1000);
             }
