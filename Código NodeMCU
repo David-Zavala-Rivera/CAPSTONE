@@ -1,4 +1,4 @@
-´´´ ruby
+```ruby
 //bibliotecas para ESP8266
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
@@ -380,4 +380,4 @@ reconnect();
             }
             }
             }
-            ´´´
+            ```
